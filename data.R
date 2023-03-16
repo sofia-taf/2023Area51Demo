@@ -6,14 +6,14 @@
 
 library(TAF)
 taf.library(SOFIA)
-suppressMessages(library(dplyr)) # filter, group_by, left_join, mutate, ...
-library(ggplot2)
-library(sraplus) # plot_driors
-library(tidyr)   # nest
+suppressMessages(library(dplyr))  # filter, group_by, mutate, summarise, ungroup
+library(ggplot2)  # aes, geom_line, geom_point, ggplot, ggsave, ggtitle
+library(sraplus)  # plot_driors
+library(tidyr)    # nest
 
 mkdir("data")
 
-## Read catch data, convert to tibble (long format)
+## Read catch data, convert to long format
 catch <- read.taf("bootstrap/data/catch.csv")
 catch$Total <- NULL  # not used, not a stock
 catch <- taf2long(catch, c("year", "stock", "capture"))
